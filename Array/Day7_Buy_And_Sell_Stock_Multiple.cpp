@@ -17,9 +17,10 @@ Constraints:
 0 <= prices[i] <= 10^4
 */
 
+
+//Whenver there is an increasing sequence, we can buy at the start of the sequence and sell at the end of the sequence.
 #include <bits/stdc++.h>
 using namespace std;
-
 
 class Solution {
   public:
