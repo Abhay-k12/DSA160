@@ -367,5 +367,41 @@ class Solution {
 
 ---
 
-Whenever you paste **new GFG DSA160 code**, I’ll return **ONLY this kind of README-ready content** — nothing extra.
-Next problem whenever you’re ready 🔥
+## 10. Maximum Subarray Sum (Kadane’s Algorithm)
+
+### Problem Explanation
+Given an integer array, find the **maximum sum of any contiguous subarray** containing at least one element.
+
+### Intuition
+At each element, decide:
+- Start a new subarray from this element, or
+- Extend the previous subarray by adding this element  
+
+Choose whichever gives a larger sum.
+
+### Approach
+- Maintain `currSum` to store the maximum subarray sum ending at the current index
+- Maintain `maxSum` to store the overall maximum
+- For each element:
+  - `currSum = max(arr[i], arr[i] + currSum)`
+  - Update `maxSum`
+- Return `maxSum`
+
+### Code
+```java
+package Array;
+
+class Solution {
+    int maxSubarraySum(int[] arr) {
+        int currSum = 0;
+        int maxSum = Integer.MIN_VALUE;
+        
+        for(int i = 0; i < arr.length; i++) {
+            currSum = Math.max(arr[i], arr[i] + currSum); 
+            maxSum = Math.max(maxSum, currSum);
+        }
+        
+        return maxSum;
+    }
+}
+
