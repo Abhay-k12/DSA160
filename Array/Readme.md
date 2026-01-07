@@ -406,3 +406,49 @@ class Solution {
 }
 
 ```
+
+---
+
+## 11. Maximum Product Subarray
+
+### Problem Explanation
+Given an array containing positive, negative, and zero values, find the **maximum product of any contiguous subarray**.
+
+### Intuition
+Negative numbers can flip the sign of the product, and zeros break subarrays.  
+To handle this, we consider products from **both directions**.
+
+### Approach
+- Traverse from **left to right**, keeping a running product
+- Reset the product when it becomes zero
+- Traverse again from **right to left** to handle cases with odd negative counts
+- Track the maximum product seen in both traversals
+
+### Code
+```java
+package Array;
+
+class Solution {
+    int maxProduct(int[] arr) {
+        int maxProduct = Integer.MIN_VALUE;
+        int currProduct = 1;
+        
+        for(int i = 0; i < arr.length; i++) {
+            currProduct *= arr[i];
+            maxProduct = Math.max(currProduct, maxProduct);
+            if(currProduct == 0) currProduct = 1;
+        }
+        
+        currProduct = 1;
+        for(int i = arr.length - 1; i >= 0; i--) {
+            currProduct *= arr[i];
+            maxProduct = Math.max(currProduct, maxProduct);
+            if(currProduct == 0) currProduct = 1;
+        }
+        
+        return maxProduct;
+    }
+}
+
+```
+
