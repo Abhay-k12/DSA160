@@ -330,7 +330,7 @@ class Solution {
 
 ---
 
-## 8. Stock Buy and Sell (Single Transaction)
+## 7. Stock Buy and Sell (Single Transaction)
 
 ### Problem Explanation
 
@@ -367,7 +367,7 @@ class Solution {
 
 ---
 
-## 10. Maximum Subarray Sum (Kadane’s Algorithm)
+## 9. Maximum Subarray Sum (Kadane’s Algorithm)
 
 ### Problem Explanation
 Given an integer array, find the **maximum sum of any contiguous subarray** containing at least one element.
@@ -409,7 +409,7 @@ class Solution {
 
 ---
 
-## 11. Maximum Product Subarray
+## 10. Maximum Product Subarray
 
 ### Problem Explanation
 Given an array containing positive, negative, and zero values, find the **maximum product of any contiguous subarray**.
@@ -452,3 +452,50 @@ class Solution {
 
 ```
 
+---
+
+## 11. Maximum Circular Subarray Sum
+
+### Problem Explanation  
+Given a **circular array**, find the maximum sum of a **non-empty contiguous subarray**, where the subarray is allowed to wrap from the end of the array to the beginning.
+
+### Intuition  
+The answer is the maximum of two cases:  
+1. **Non-circular maximum subarray sum** (normal Kadane’s algorithm).  
+2. **Circular maximum subarray sum** = `totalSum - minimum subarray sum`.
+
+If the entire array is the minimum subarray, then wrapping gives no benefit, so we return the normal maximum subarray sum.
+
+### Approach  
+- Use Kadane’s algorithm to find:
+  - `maxSum` → maximum subarray sum  
+  - `minSum` → minimum subarray sum  
+- Compute `totalSum` of the array  
+- If `totalSum == minSum`, return `maxSum` (all elements are negative case)  
+- Otherwise, return `max(totalSum - minSum, maxSum)`
+
+### Code
+```java
+class Solution {
+    public int maxCircularSum(int arr[]) {
+        int minSum = Integer.MAX_VALUE, 
+            maxSum = Integer.MIN_VALUE, 
+            totalSum = 0;
+        int currMaxSum = 0, currMinSum = 0;
+        
+        for(int i = 0; i < arr.length; i++) {
+            currMaxSum = Math.max(arr[i], arr[i] + currMaxSum);
+            maxSum = Math.max(maxSum, currMaxSum);
+            
+            currMinSum = Math.min(arr[i], arr[i] + currMinSum);
+            minSum = Math.min(minSum, currMinSum);
+            
+            totalSum += arr[i];
+        }
+        
+        if(totalSum == minSum) return maxSum;
+        return Math.max(totalSum - minSum, maxSum);
+    }
+}
+
+```
