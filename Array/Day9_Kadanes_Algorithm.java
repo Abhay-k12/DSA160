@@ -23,7 +23,6 @@ Constraints:
 
 //Step1: Caluculate the sum by selecting each element on asking them that "Either you are maximum os after adding you the sum is Maximum?"
 //Step2: Strore the maximum of all the sum after asking question from each element.
-package Array;
 
 class Solution {
     int maxSubarraySum(int[] arr) {
