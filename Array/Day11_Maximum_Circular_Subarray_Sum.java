@@ -21,8 +21,6 @@ Constraints:
 -10^4 ≤ arr[i] ≤ 10^4
 */
 
-
-
 class Solution {
     public int maxCircularSum(int arr[]) {
         // code here
