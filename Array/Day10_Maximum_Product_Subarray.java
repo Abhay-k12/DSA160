@@ -21,8 +21,6 @@ Constraints:
 -10  ≤  arr[i]  ≤  10
 */
 
-package Array;
-
 class Solution {
     int maxProduct(int[] arr) {
         int maxProduct = Integer.MIN_VALUE;
