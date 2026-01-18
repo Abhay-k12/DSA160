@@ -330,7 +330,7 @@ class Solution {
 
 ---
 
-## 7. Stock Buy and Sell (Single Transaction)
+## 8. Stock Buy and Sell (Single Transaction)
 
 ### Problem Explanation
 
@@ -367,7 +367,7 @@ class Solution {
 
 ---
 
-## 9. Maximum Subarray Sum (Kadane’s Algorithm)
+## 10. Maximum Subarray Sum (Kadane’s Algorithm)
 
 ### Problem Explanation
 Given an integer array, find the **maximum sum of any contiguous subarray** containing at least one element.
@@ -409,7 +409,7 @@ class Solution {
 
 ---
 
-## 10. Maximum Product Subarray
+## 11. Maximum Product Subarray
 
 ### Problem Explanation
 Given an array containing positive, negative, and zero values, find the **maximum product of any contiguous subarray**.
@@ -454,7 +454,7 @@ class Solution {
 
 ---
 
-## 11. Maximum Circular Subarray Sum
+## 12. Maximum Circular Subarray Sum
 
 ### Problem Explanation  
 Given a **circular array**, find the maximum sum of a **non-empty contiguous subarray**, where the subarray is allowed to wrap from the end of the array to the beginning.
