@@ -499,3 +499,48 @@ class Solution {
 }
 
 ```
+
+---
+
+## 13. Smallest Missing Positive Number
+
+### Problem Explanation  
+Given an integer array that may contain negative numbers and zero, find the **smallest missing positive integer**.  
+Positive numbers start from **1**.
+
+### Intuition  
+The answer must lie in the range **[1, n+1]**, where `n` is the array size.  
+We can use the array itself as a frequency map by marking indices corresponding to values.
+
+### Approach  
+1. Replace all negative numbers and numbers greater than `n` with `0`.  
+2. For each value `x` in the array (where `1 ≤ x ≤ n`), mark its presence by adding `(n+1)` to index `x-1`.  
+3. The first index whose value is still less than `n+1` corresponds to the missing number.  
+4. If all positions are marked, return `n+1`.
+
+### Code
+```java
+class Solution {
+    public int missingNumber(int[] arr) {
+        int n = arr.length;
+        
+        for(int i = 0; i < n; i++) {
+            if(arr[i] < 0 || arr[i] > n) 
+                arr[i] = 0;
+        }
+        
+        for(int i = 0; i < n; i++) {
+            int value = arr[i] % (n + 1);
+            if(value != 0) {
+                arr[value - 1] += n + 1;
+            }
+        }
+        
+        for(int i = 0; i < n; i++) 
+            if(arr[i] / (n + 1) == 0)
+                return i + 1;
+        
+        return n + 1;
+    }
+}
+```
