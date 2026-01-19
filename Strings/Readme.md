@@ -5,8 +5,6 @@ Each problem includes a short explanation, intuition, approach, and the **exact 
 
 ---
 
----
-
 ## 16. Check if Two Strings are Anagrams  
 
 ### Problem Explanation  
