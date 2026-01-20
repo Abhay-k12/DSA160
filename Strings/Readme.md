@@ -50,3 +50,44 @@ class Solution {
     }
 }
 ```
+
+---
+
+## 17. First Non-Repeating Character in a String  
+
+### Problem Explanation  
+Given a lowercase string `s`, return the **first character that appears exactly once**.  
+If no such character exists, return `'$'`.
+
+### Intuition  
+Count the frequency of each character first, then scan the string from left to right to find the first character with frequency `1`.
+
+### Approach  
+1. Create a frequency array of size 26.  
+2. Count occurrences of each character.  
+3. Traverse the string again from left to right and return the first character with frequency `1`.  
+4. If none exists, return `'$'`.
+
+### Code
+```java
+package Strings;
+
+import java.util.Arrays;
+
+class Solution {
+    public char nonRepeatingChar(String s) {
+        int freqArray[] = new int[26];
+        char ans = '$';
+        Arrays.fill(freqArray, 0);
+        
+        for(int i = 0; i < s.length(); i++)
+            freqArray[s.charAt(i) - 'a'] += 1;
+            
+        for(int i = 0; i < s.length(); i++) 
+            if(freqArray[s.charAt(i) - 'a'] == 1)
+                return s.charAt(i);
+        
+        return ans;
+    }
+}
+```
