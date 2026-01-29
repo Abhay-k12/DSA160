@@ -5,6 +5,53 @@ Each problem includes a short explanation, intuition, approach, and the **exact 
 
 ---
 
+## 15. Add Binary Strings  
+
+### Problem Explanation  
+Given two binary strings `s1` and `s2`, compute their binary sum and return the resulting string **without leading zeros**.
+
+### Approach  
+- Start from the end of both strings and add bits one by one (like manual binary addition).  
+- Maintain a `carry` for sums ≥ 2.  
+- Append result bits to a `StringBuilder` and reverse it at the end.  
+- Strip leading zeros from the final string (return `"0"` if all bits are zero).
+
+### Time & Space Complexity  
+- **Time Complexity:** `O(n + m)`  
+- **Space Complexity:** `O(max(n, m))`  
+
+### Code
+```java
+package Strings;
+
+class Solution {
+    public String addBinary(String s1, String s2) {
+        StringBuilder ans = new StringBuilder();
+        int index1 = s1.length() - 1;
+        int index2 = s2.length() - 1;
+        short carry = 0;
+
+        while(index1 >= 0 || index2 >= 0) {
+            int sum = carry;
+            if(index1 >= 0) sum += s1.charAt(index1--) - '0';
+            if(index2 >= 0) sum += s2.charAt(index2--) - '0';
+
+            ans.append(sum % 2);
+            carry = (short)(sum / 2);
+        }
+
+        if(carry == 1) ans.append('1');
+        ans.reverse();
+
+        int i = 0;
+        while(i < ans.length() && ans.charAt(i) == '0') i++;
+        return (i == ans.length()) ? "0" : ans.substring(i);
+    }
+}
+
+```
+
+
 ## 16. Check if Two Strings are Anagrams  
 
 ### Problem Explanation  
