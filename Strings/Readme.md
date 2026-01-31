@@ -5,6 +5,67 @@ Each problem includes a short explanation, intuition, approach, and the **exact 
 
 ---
 
+## 14. Implement `atoi()` (String to Integer Conversion)
+
+### Problem Explanation  
+Convert a given string into an integer **without using built-in conversion functions**, following `atoi()` rules:
+- Ignore leading whitespaces  
+- Handle optional sign (`+` / `-`)  
+- Read digits until a non-digit character  
+- Clamp the value within **32-bit signed integer range**  
+
+### Approach  
+- Traverse the string while skipping leading spaces  
+- Detect negative sign (if present)  
+- Skip leading zeros  
+- Convert digit-by-digit while checking for overflow  
+- Stop conversion when a non-digit is encountered  
+
+### Time & Space Complexity  
+- **Time Complexity:** `O(n)`  
+- **Space Complexity:** `O(1)`  
+
+### Code
+```java
+package Strings;
+
+class Solution {
+    public int myAtoi(String str) {
+        int n = str.length();
+        int index = 0;
+        boolean negSign = false;
+        
+        while(index < n && str.charAt(index) == ' ')
+            index++;
+        
+        if(index < n && str.charAt(index) == '-') {
+            negSign = true;
+            index++;
+        }
+        
+        while(index < n && str.charAt(index) == '0')
+            index++;
+        
+        int ans = 0;
+        while(index < n && isnum(str.charAt(index))) {
+            if(ans < (Integer.MAX_VALUE - (str.charAt(index) - '0')) / 10) {
+                ans = ans * 10 + (str.charAt(index) - '0');
+            } else {
+                return negSign ? -2147483648 : 2147483647;
+            }
+            index++;
+        }
+        
+        return negSign ? -ans : ans;
+    }
+    
+    private boolean isnum(char ch) {
+        return ch >= '0' && ch <= '9';
+    }
+}
+
+```
+
 ## 15. Add Binary Strings  
 
 ### Problem Explanation  
